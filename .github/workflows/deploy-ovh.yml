@@ -64,6 +64,8 @@ jobs:
           mirror --reverse --delete --verbose \
             --exclude-glob .git* \
             --exclude-glob .github* \
+            --exclude-glob .nojekyll \
+            --exclude-glob CNAME \
             --exclude-glob README.md \
             ./ "$OVH_REMOTE_DIR"
           bye
