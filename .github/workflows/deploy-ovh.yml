@@ -1,0 +1,70 @@
+name: Deploy to OVH
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-ovh
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Upload static site
+    runs-on: ubuntu-latest
+    env:
+      OVH_SFTP_HOST: ${{ secrets.OVH_SFTP_HOST }}
+      OVH_SFTP_USER: ${{ secrets.OVH_SFTP_USER }}
+      OVH_SFTP_PASSWORD: ${{ secrets.OVH_SFTP_PASSWORD }}
+      OVH_REMOTE_DIR: ${{ secrets.OVH_REMOTE_DIR }}
+
+    steps:
+      - name: Check OVH settings
+        id: config
+        shell: bash
+        run: |
+          missing=0
+          for key in OVH_SFTP_HOST OVH_SFTP_USER OVH_SFTP_PASSWORD OVH_REMOTE_DIR; do
+            if [ -z "${!key}" ]; then
+              echo "::notice::$key is not configured; deployment will be skipped."
+              missing=1
+            fi
+          done
+
+          if [ "$missing" -eq 0 ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout site
+        if: steps.config.outputs.ready == 'true'
+        uses: actions/checkout@v4
+
+      - name: Install uploader
+        if: steps.config.outputs.ready == 'true'
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Upload to OVH
+        if: steps.config.outputs.ready == 'true'
+        shell: bash
+        run: |
+          lftp -u "$OVH_SFTP_USER","$OVH_SFTP_PASSWORD" "sftp://$OVH_SFTP_HOST:22" <<EOF
+          set sftp:auto-confirm yes
+          set net:max-retries 2
+          set net:timeout 20
+          mirror --reverse --delete --verbose \
+            --exclude-glob .git* \
+            --exclude-glob .github* \
+            --exclude-glob README.md \
+            ./ "$OVH_REMOTE_DIR"
+          bye
+          EOF
