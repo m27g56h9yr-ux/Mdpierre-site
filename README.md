@@ -7,6 +7,9 @@ Page d'accueil statique pour `mdpierre.com`.
 - `index.html`
 - `styles.css`
 - `script.js`
+- `robots.txt`
+- `sitemap.xml`
+- `llms.txt`
 - `.nojekyll`
 - `CNAME`
 - `assets/favicon.svg`
@@ -40,3 +43,4 @@ SFTP `mdpierrech` et le serveur `ftp.cluster121.hosting.ovh.net`.
 - Le texte de bas de page contient l'avertissement sanitaire.
 - Les photos sont servies depuis les deux sites de marque deja publies.
 - Le logo principal utilise `assets/maison-des-pierres-logo-original.png`, export web recadre du document original `Maison2.ai`.
+- Le referencement repose sur les balises meta de `index.html`, les donnees structurees JSON-LD, `robots.txt`, `sitemap.xml` et `llms.txt`.
