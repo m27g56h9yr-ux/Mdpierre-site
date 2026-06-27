@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" role="img" aria-labelledby="title desc">
+  <title id="title">Maison des Pierres</title>
+  <desc id="desc">Sceau rond Maison des Pierres avec une maison stylisee.</desc>
+  <defs>
+    <path id="topArc" d="M 116 356 A 234 234 0 0 1 584 356" />
+    <path id="bottomArc" d="M 584 344 A 234 234 0 0 1 116 344" />
+  </defs>
+  <rect width="700" height="700" fill="#fbfaf4" />
+  <circle cx="350" cy="350" r="314" fill="none" stroke="#1a241f" stroke-width="1.5" opacity="0.16" />
+  <g fill="#1a241f">
+    <text font-family="Manrope, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="10">
+      <textPath href="#topArc" startOffset="50%" text-anchor="middle">MAISON DES PIERRES</textPath>
+    </text>
+    <text font-family="Manrope, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="10">
+      <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">MAISON DES PIERRES</textPath>
+    </text>
+    <circle cx="89" cy="350" r="12" />
+    <circle cx="611" cy="350" r="12" />
+    <g transform="translate(185 232)">
+      <polygon points="0,90 65,68 128,45 250,45 320,68 370,86 360,98 10,98" />
+      <rect x="24" y="112" width="322" height="34" />
+      <rect x="24" y="202" width="322" height="34" />
+      <rect x="24" y="280" width="322" height="24" />
+      <rect x="24" y="112" width="32" height="124" />
+      <rect x="102" y="112" width="32" height="124" />
+      <rect x="180" y="112" width="32" height="124" />
+      <rect x="258" y="112" width="32" height="124" />
+      <rect x="336" y="112" width="32" height="124" />
+      <rect x="24" y="236" width="32" height="68" />
+      <rect x="102" y="236" width="32" height="68" />
+      <rect x="180" y="236" width="32" height="90" />
+      <rect x="258" y="236" width="32" height="68" />
+      <rect x="336" y="236" width="32" height="68" />
+      <rect x="18" y="72" width="18" height="58" />
+      <rect x="334" y="72" width="18" height="58" />
+    </g>
+  </g>
+</svg>
