@@ -21,6 +21,19 @@ domaine. Aucune base de donnees ni application serveur n'est necessaire.
 - `CNAME` prepare le domaine personnalise `mdespierres.com`.
 - L'activation de GitHub Pages pourra ensuite se faire depuis GitHub, en choisissant la branche `main` et le dossier racine.
 
+## Deploiement OVH par GitHub Actions
+
+Le fichier `.github/workflows/deploy-ovh.yml` prepare un deploiement automatique vers OVH en SFTP apres chaque mise a jour de la branche `main`.
+
+Le deploiement reste ignore tant que ces secrets GitHub ne sont pas renseignes :
+
+- `OVH_SFTP_HOST`
+- `OVH_SFTP_USER`
+- `OVH_SFTP_PASSWORD`
+- `OVH_REMOTE_DIR`
+
+Sur l'hebergement OVH actuel, le dossier public du site est `www`.
+
 ## Points faciles a modifier
 
 - L'adresse e-mail principale est actuellement `cognac@mdpierre.com`.
