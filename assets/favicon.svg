@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Maison des Pierres">
+  <rect width="128" height="128" fill="#fbfaf4" />
+  <g fill="#1a241f" transform="translate(10 16)">
+    <polygon points="0,30 20,22 42,14 74,14 96,22 108,28 104,34 4,34" />
+    <rect x="6" y="40" width="96" height="10" />
+    <rect x="6" y="68" width="96" height="10" />
+    <rect x="6" y="94" width="96" height="8" />
+    <rect x="6" y="40" width="10" height="38" />
+    <rect x="30" y="40" width="10" height="38" />
+    <rect x="54" y="40" width="10" height="38" />
+    <rect x="78" y="40" width="10" height="38" />
+    <rect x="102" y="40" width="10" height="38" />
+    <rect x="6" y="78" width="10" height="24" />
+    <rect x="30" y="78" width="10" height="24" />
+    <rect x="54" y="78" width="10" height="30" />
+    <rect x="78" y="78" width="10" height="24" />
+    <rect x="102" y="78" width="10" height="24" />
+  </g>
+</svg>
