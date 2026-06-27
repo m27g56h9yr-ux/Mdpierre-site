@@ -1,38 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" role="img" aria-labelledby="title desc">
-  <title id="title">Maison des Pierres</title>
-  <desc id="desc">Sceau rond Maison des Pierres avec une maison stylisee.</desc>
-  <defs>
-    <path id="topArc" d="M 116 356 A 234 234 0 0 1 584 356" />
-    <path id="bottomArc" d="M 584 344 A 234 234 0 0 1 116 344" />
-  </defs>
-  <rect width="700" height="700" fill="#fbfaf4" />
-  <circle cx="350" cy="350" r="314" fill="none" stroke="#1a241f" stroke-width="1.5" opacity="0.16" />
-  <g fill="#1a241f">
-    <text font-family="Manrope, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="10">
-      <textPath href="#topArc" startOffset="50%" text-anchor="middle">MAISON DES PIERRES</textPath>
-    </text>
-    <text font-family="Manrope, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="10">
-      <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">MAISON DES PIERRES</textPath>
-    </text>
-    <circle cx="89" cy="350" r="12" />
-    <circle cx="611" cy="350" r="12" />
-    <g transform="translate(185 232)">
-      <polygon points="0,90 65,68 128,45 250,45 320,68 370,86 360,98 10,98" />
-      <rect x="24" y="112" width="322" height="34" />
-      <rect x="24" y="202" width="322" height="34" />
-      <rect x="24" y="280" width="322" height="24" />
-      <rect x="24" y="112" width="32" height="124" />
-      <rect x="102" y="112" width="32" height="124" />
-      <rect x="180" y="112" width="32" height="124" />
-      <rect x="258" y="112" width="32" height="124" />
-      <rect x="336" y="112" width="32" height="124" />
-      <rect x="24" y="236" width="32" height="68" />
-      <rect x="102" y="236" width="32" height="68" />
-      <rect x="180" y="236" width="32" height="90" />
-      <rect x="258" y="236" width="32" height="68" />
-      <rect x="336" y="236" width="32" height="68" />
-      <rect x="18" y="72" width="18" height="58" />
-      <rect x="334" y="72" width="18" height="58" />
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 270" role="img" aria-labelledby="title desc">
+  <title id="title">Maison des Pierres Cognac</title>
+  <desc id="desc">Logo horizontal Maison des Pierres Cognac avec maison centree.</desc>
+  <rect width="920" height="270" fill="#fffdfa" />
+  <g fill="none" stroke="#15130f" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M292 92 C343 54 406 38 466 39 C528 40 590 58 638 93" stroke-width="5" opacity=".82" />
+    <path d="M360 91 L460 45 L560 91" stroke-width="5" />
+    <path d="M383 91 H537 V153 H383 Z" stroke-width="4" />
+    <path d="M404 91 V153 M430 91 V153 M456 91 V153 M482 91 V153 M508 91 V153" stroke-width="3" opacity=".8" />
+    <path d="M284 129 C226 122 176 131 135 153" stroke-width="4" opacity=".45" />
+    <path d="M636 129 C694 122 744 131 785 153" stroke-width="4" opacity=".45" />
   </g>
+  <text
+    x="460"
+    y="190"
+    fill="#15130f"
+    font-family="Inter, Arial, sans-serif"
+    font-size="58"
+    font-weight="800"
+    letter-spacing="7"
+    text-anchor="middle"
+  >MAISON DES PIERRES</text>
+  <g fill="none" stroke="#15130f" stroke-linecap="round" opacity=".62">
+    <path d="M341 229 H414" stroke-width="2.5" />
+    <path d="M506 229 H579" stroke-width="2.5" />
+  </g>
+  <text
+    x="460"
+    y="238"
+    fill="#15130f"
+    font-family="Inter, Arial, sans-serif"
+    font-size="28"
+    font-weight="700"
+    letter-spacing="16"
+    text-anchor="middle"
+  >COGNAC</text>
 </svg>

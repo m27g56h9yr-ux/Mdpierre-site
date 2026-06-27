@@ -8,21 +8,24 @@
       name="description"
       content="Maison des Pierres rassemble un vignoble familial charentais, la distillation, l'élevage et la mise en bouteille de cognacs de producteurs."
     />
-    <meta name="theme-color" content="#183229" />
+    <meta name="theme-color" content="#171512" />
     <meta property="og:title" content="Maison des Pierres" />
     <meta
       property="og:description"
       content="Une maison charentaise de cognacs de producteurs, ancrée dans le vignoble et la pierre calcaire."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mdespierres.com/" />
-    <meta property="og:image" content="assets/maison-des-pierres-logo.svg" />
-    <link rel="canonical" href="https://mdespierres.com/" />
+    <meta property="og:url" content="https://mdpierre.com/" />
+    <meta
+      property="og:image"
+      content="https://cognac-esprit-organic.com/assets/img/brand/hero-old-vine.jpg"
+    />
+    <link rel="canonical" href="https://mdpierre.com/" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -39,44 +42,51 @@
         </p>
         <div class="age-gate__actions">
           <button class="button button--dark" type="button" id="age-accept">J'ai l'âge légal</button>
-          <a class="button button--quiet" href="https://www.google.com">Quitter</a>
+          <a class="button button--ghost" href="https://www.google.com">Quitter</a>
         </div>
       </div>
     </div>
 
     <header class="site-header">
       <a class="brand" href="#accueil" aria-label="Retour à l'accueil">
-        <span class="brand__mark">
-          <img src="assets/maison-des-pierres-logo.svg" alt="" />
-        </span>
         <span>Maison des Pierres</span>
       </a>
       <nav class="site-nav" aria-label="Navigation principale">
         <a href="#maison">La maison</a>
+        <a href="#marques">Marques</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <main id="accueil">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero__image" aria-hidden="true"></div>
+        <img
+          class="hero__image"
+          src="https://cognac-esprit-organic.com/assets/img/brand/hero-old-vine.jpg"
+          alt=""
+        />
+        <div class="hero__scrim" aria-hidden="true"></div>
         <div class="hero__content">
           <p class="hero__kicker">Triac-Lautrait, Charente</p>
+          <img class="hero__logo" src="assets/maison-des-pierres-logo.svg" alt="Maison des Pierres Cognac" />
           <h1 id="hero-title">Maison des Pierres</h1>
           <p class="hero__lead">
             Une maison de cognacs de producteurs, ancrée dans les sols calcaires,
             le travail du vignoble et l'élevage patient des eaux-de-vie.
           </p>
-          <div class="hero__actions" aria-label="Actions principales">
-            <a class="button button--light" href="mailto:cognac@mdpierre.com">Écrire à la maison</a>
-            <a class="button button--outline" href="https://cognac-leopold-croizet.com/">Voir les cognacs</a>
-          </div>
+          <a class="button button--light" href="mailto:cognac@mdpierre.com">Écrire à la maison</a>
         </div>
       </section>
 
-      <section class="section section--intro" id="maison" aria-labelledby="maison-title">
-        <div class="section__label">La maison</div>
-        <div class="section__body">
+      <section class="intro" id="maison" aria-labelledby="maison-title">
+        <div class="intro__media">
+          <img
+            src="https://cognac-leopold-croizet.com/wp-content/uploads/2022/02/propriete_02-scaled.jpg"
+            alt=""
+          />
+        </div>
+        <div class="intro__content">
+          <p class="eyebrow">La maison</p>
           <h2 id="maison-title">Une porte d'entrée pour mieux situer Maison des Pierres.</h2>
           <p>
             Maison des Pierres porte l'activité d'une propriété charentaise
@@ -85,18 +95,43 @@
         </div>
       </section>
 
+      <section class="brand-links" id="marques" aria-labelledby="brands-title">
+        <div class="brand-links__heading">
+          <p class="eyebrow">Sites de marque</p>
+          <h2 id="brands-title">Deux chemins pour découvrir les cuvées.</h2>
+        </div>
+        <div class="brand-links__grid">
+          <a class="brand-card" href="https://cognac-leopold-croizet.com/">
+            <img
+              src="https://cognac-leopold-croizet.com/wp-content/uploads/2021/10/rencontre_01-scaled-scaled.jpg"
+              alt=""
+            />
+            <span class="brand-card__shade" aria-hidden="true"></span>
+            <span class="brand-card__content">
+              <span>Cognac Léopold Croizet</span>
+              <span>Accéder au site</span>
+            </span>
+          </a>
+          <a class="brand-card" href="https://cognac-esprit-organic.com/">
+            <img src="https://cognac-esprit-organic.com/assets/img/products/gamme-esprit-organic.jpg" alt="" />
+            <span class="brand-card__shade" aria-hidden="true"></span>
+            <span class="brand-card__content">
+              <span>Cognac Esprit Organic</span>
+              <span>Accéder au site</span>
+            </span>
+          </a>
+        </div>
+      </section>
+
       <section class="contact-band" id="contact" aria-labelledby="contact-title">
-        <div>
+        <div class="contact-band__identity">
+          <img src="assets/maison-des-pierres-logo.svg" alt="" />
+        </div>
+        <div class="contact-band__content">
           <p class="eyebrow">Contact</p>
           <h2 id="contact-title">Maison des Pierres</h2>
           <p>30 rue d'Angoulême, Lantin, 16200 Triac-Lautrait, France</p>
-        </div>
-        <div class="contact-band__actions">
-          <img class="contact-band__logo" src="assets/maison-des-pierres-logo.svg" alt="" />
-          <div class="contact-band__links">
-            <a class="button button--dark" href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a>
-            <a class="button button--line" href="https://cognac-leopold-croizet.com/">cognac-leopold-croizet.com</a>
-          </div>
+          <a class="contact-link" href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a>
         </div>
       </section>
     </main>
