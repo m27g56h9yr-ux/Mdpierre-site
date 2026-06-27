@@ -18,10 +18,10 @@ jobs:
     name: Upload static site
     runs-on: ubuntu-latest
     env:
-      OVH_SFTP_HOST: ${{ secrets.OVH_SFTP_HOST }}
-      OVH_SFTP_USER: ${{ secrets.OVH_SFTP_USER }}
       OVH_SFTP_PASSWORD: ${{ secrets.OVH_SFTP_PASSWORD }}
-      OVH_REMOTE_DIR: ${{ secrets.OVH_REMOTE_DIR }}
+      OVH_SFTP_HOST: ftp.cluster121.hosting.ovh.net
+      OVH_SFTP_USER: mdpierrech
+      OVH_REMOTE_DIR: www
 
     steps:
       - name: Check OVH settings
@@ -29,7 +29,7 @@ jobs:
         shell: bash
         run: |
           missing=0
-          for key in OVH_SFTP_HOST OVH_SFTP_USER OVH_SFTP_PASSWORD OVH_REMOTE_DIR; do
+          for key in OVH_SFTP_PASSWORD; do
             if [ -z "${!key}" ]; then
               echo "::notice::$key is not configured; deployment will be skipped."
               missing=1
