@@ -168,7 +168,9 @@ a:focus-visible {
 }
 
 .hero__logo {
-  width: min(500px, 78vw);
+  display: block;
+  width: clamp(190px, 22vw, 270px);
+  margin: 0 auto;
   filter: drop-shadow(0 22px 54px rgba(23, 21, 18, 0.4));
 }
 
@@ -401,7 +403,7 @@ a:focus-visible {
 }
 
 .contact-band__identity img {
-  width: min(360px, 100%);
+  width: min(220px, 100%);
 }
 
 .contact-link {
@@ -444,22 +446,33 @@ a:focus-visible {
 
 .age-gate__panel {
   width: min(590px, 100%);
-  padding: clamp(28px, 6vw, 48px);
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+  padding: clamp(24px, 5vw, 42px);
   border: 1px solid rgba(255, 250, 240, 0.38);
   background: var(--vellum);
   box-shadow: 0 30px 110px rgba(0, 0, 0, 0.38);
 }
 
 .age-gate__logo {
-  width: min(360px, 100%);
-  margin: 0 0 28px;
+  width: min(140px, 46vw);
+  margin: 0 0 22px;
+}
+
+.age-gate__panel h2 {
+  font-size: 4rem;
+  line-height: 0.95;
+}
+
+.age-gate__panel p:not(.eyebrow) {
+  margin-top: 20px;
 }
 
 .age-gate__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 22px;
 }
 
 .age-gate__actions .button {
@@ -534,7 +547,20 @@ a:focus-visible {
   }
 
   .hero__logo {
-    width: min(390px, 88vw);
+    width: min(230px, 62vw);
+  }
+
+  .age-gate__panel {
+    padding: 22px;
+  }
+
+  .age-gate__logo {
+    width: min(116px, 42vw);
+    margin-bottom: 18px;
+  }
+
+  .age-gate__panel h2 {
+    font-size: 3rem;
   }
 
   .intro h2,

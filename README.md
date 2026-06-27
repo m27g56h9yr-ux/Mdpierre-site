@@ -10,7 +10,7 @@ Page d'accueil statique pour `mdpierre.com`.
 - `.nojekyll`
 - `CNAME`
 - `assets/favicon.svg`
-- `assets/maison-des-pierres-logo.svg`
+- `assets/maison-des-pierres-logo-original.png`
 
 Ces fichiers peuvent etre deposes tels quels a la racine de l'hebergement du
 domaine. Aucune base de donnees ni application serveur n'est necessaire.
@@ -39,4 +39,4 @@ SFTP `mdpierrech` et le serveur `ftp.cluster121.hosting.ovh.net`.
   `https://cognac-esprit-organic.com/`.
 - Le texte de bas de page contient l'avertissement sanitaire.
 - Les photos sont servies depuis les deux sites de marque deja publies.
-- Le logo principal utilise `assets/maison-des-pierres-logo.svg`.
+- Le logo principal utilise `assets/maison-des-pierres-logo-original.png`, export web recadre du document original `Maison2.ai`.
