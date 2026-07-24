@@ -35,6 +35,18 @@ Le deploiement reste ignore tant que ce secret GitHub n'est pas renseigne :
 Sur l'hebergement OVH actuel, le dossier public du site est `www`, avec l'utilisateur
 SFTP `mdpierrech` et le serveur `ftp.cluster121.hosting.ovh.net`.
 
+## Politique MTA-STS
+
+Le fragment `.github/ops/mta-sts/Caddyfile.fragment` publie une politique MTA-STS en
+mode `testing` pour les trois serveurs MX OVH. La politique est servie par le
+reverse proxy Maison des Pierres, independamment de l'hebergement statique
+gratuit qui ne permet pas d'ajouter un quatrieme hote.
+
+L'URL publique doit rester
+`https://mta-sts.mdpierre.com/.well-known/mta-sts.txt`, sans redirection et avec
+un certificat TLS valide pour `mta-sts.mdpierre.com`. Toute modification du
+contenu impose de changer aussi l'identifiant du TXT `_mta-sts.mdpierre.com`.
+
 ## Points faciles a modifier
 
 - L'adresse e-mail principale est actuellement `cognac@mdpierre.com`.

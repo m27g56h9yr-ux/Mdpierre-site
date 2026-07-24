@@ -1,0 +1,20 @@
+# Hôte de politique MTA-STS pour mdpierre.com.
+mta-sts.mdpierre.com {
+	@policy path /.well-known/mta-sts.txt
+
+	handle @policy {
+		header Content-Type "text/plain; charset=utf-8"
+		header Cache-Control "max-age=60"
+		header -Server
+		respond <<POLICY
+			version: STSv1
+			mode: testing
+			mx: mx1.mail.ovh.net
+			mx: mx2.mail.ovh.net
+			mx: mx3.mail.ovh.net
+			max_age: 1296000
+			POLICY 200
+	}
+
+	respond 404
+}
