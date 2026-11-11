@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accès CSE Lectra — Cognac Léopold Croizet</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <style>
+      :root{--bg:#f7f2ea;--card:#ffffff;--ink:#17120e;--muted:#5d5248;--line:#e7ded1;--accent:#b78a3b;--accent-dark:#8a6424;--head:#17120e;--headtxt:#f7efe4;--code:#17120e;--codetxt:#f7efe4;--chip:#f3ead9}
+      *{box-sizing:border-box}
+      body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,Arial,sans-serif}
+      .top{background:var(--head);color:var(--headtxt)}
+      .top .in{max-width:760px;margin:0 auto;padding:28px 16px 30px}
+      .logo{display:inline-block;background:#17120e;border-radius:6px;padding:8px 12px;margin-bottom:18px}
+      .logo img{height:54px;width:auto;display:block}
+      .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin:0 0 6px}
+      h1{font:400 34px/1.15 Georgia,"Times New Roman",serif;margin:0 0 10px}
+      .top p{margin:0;opacity:.92}
+      main{max-width:760px;margin:0 auto;padding:8px 16px 48px}
+      h2{font:600 14px/1.3 Inter,Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-dark);margin:30px 0 10px}
+      p{margin:0 0 12px}
+      .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin:12px 0}
+      dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 16px;margin:0}
+      dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}
+      code,pre{font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+      code{background:var(--chip);color:var(--ink);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+      pre{background:var(--code);color:var(--codetxt);padding:16px;border-radius:8px;overflow-x:auto;margin:10px 0}
+      pre code{background:none;color:inherit;padding:0;border-radius:0}
+      ol{padding-left:22px;margin:0}li{margin:6px 0}
+      button{font:600 15px Inter,Arial,sans-serif;background:var(--accent);color:#fff;border:0;border-radius:6px;padding:12px 18px;cursor:pointer}
+      button:hover{background:var(--accent-dark)}
+      #example{display:none;margin-top:12px}#example a{color:var(--accent-dark);font-weight:600;overflow-wrap:anywhere}
+      .note{font-size:14px;color:var(--muted)}
+      #closed,#loading{display:none}
+      .is-loading #loading{display:block}.is-loading #content{display:none}
+      .is-closed #closed{display:block}.is-closed #content{display:none}
+      footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;font-size:13px;color:var(--muted)}
+      footer a{color:var(--accent-dark)}
+    </style>
+  </head>
+  <body class="is-loading">
+    <div class="top"><div class="in">
+      <div class="logo"><img src="https://cognac-leopold-croizet.com/wp-content/uploads/2021/10/logo_croizet_blason.svg" alt="Cognac Léopold Croizet" /></div>
+      <p class="eyebrow">Maison des Pierres · Offre CSE</p>
+      <h1>Accès CSE Lectra — Cognac Léopold Croizet</h1>
+      <p>Pour le service informatique de l'intranet du CSE Lectra : comment créer le lien qui ouvre le site Cognac Léopold Croizet avec le tarif CSE des salariés.</p>
+    </div></div>
+    <main>
+      <p id="loading" class="card">Chargement des paramètres…</p>
+      <div id="closed" class="card">
+        <p><strong>Cette page n'est plus accessible.</strong></p>
+        <p>Elle a été fermée après 10 connexions réussies. Elle est réactivée sur simple demande à <a href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a>.</p>
+      </div>
+      <div id="content">
+        <h2>Principe</h2>
+        <p>Le lien est fabriqué par le serveur de l'intranet au moment où un salarié connecté clique. Il est signé, valable 10 minutes et utilisable une seule fois. Recopié ou transféré, il ne donne pas le tarif CSE. Le salarié arrive sur le site Cognac Léopold Croizet ; ses achats sur la boutique Maison des Pierres sont alors au tarif CSE pendant 3 heures.</p>
+
+        <h2>Vos paramètres</h2>
+        <div class="card"><dl>
+          <dt>Identifiant</dt><dd><code class="v-id">…</code></dd>
+          <dt>Clé secrète</dt><dd><code id="v-secret">…</code></dd>
+          <dt>Adresse</dt><dd><code>https://cognac-leopold-croizet.com/acces-cse/</code></dd>
+        </dl></div>
+        <p class="note">La clé reste sur le serveur de l'intranet : jamais dans une page, un navigateur ou un lien.</p>
+
+        <h2>À chaque clic</h2>
+        <ol>
+          <li><code>ts</code> : l'heure actuelle en secondes (timestamp Unix, 2 minutes de tolérance).</li>
+          <li><code>nonce</code> : 32 caractères aléatoires (0-9 a-f).</li>
+          <li><code>sig</code> : HMAC-SHA256 en hexadécimal du texte <code><span class="v-id">…</span>.ts.nonce</code>, avec la clé secrète telle quelle.</li>
+          <li>Rediriger le salarié (HTTP 302) vers :<br /><code>https://cognac-leopold-croizet.com/acces-cse/?mdp_cse=<span class="v-id">…</span>&amp;mdp_ts=ts&amp;mdp_nonce=nonce&amp;mdp_sig=sig</code></li>
+        </ol>
+
+        <h2>Exemple PHP</h2>
+        <pre><code>&lt;?php
+// Page de l'intranet réservée aux salariés connectés, ex. /cognac
+$id     = '<span class="v-id">…</span>';
+$secret = getenv('MDP_CSE_SECRET');   // la clé secrète, stockée côté serveur
+$ts     = (string) time();
+$nonce  = bin2hex(random_bytes(16));
+$sig    = hash_hmac('sha256', "$id.$ts.$nonce", $secret);
+header('Location: https://cognac-leopold-croizet.com/acces-cse/?' . http_build_query([
+    'mdp_cse' =&gt; $id, 'mdp_ts' =&gt; $ts, 'mdp_nonce' =&gt; $nonce, 'mdp_sig' =&gt; $sig,
+]), true, 302);
+exit;</code></pre>
+
+        <h2>Exemple Node.js</h2>
+        <pre><code>const crypto = require('crypto');
+app.get('/cognac', requireLogin, (req, res) =&gt; {
+  const id = '<span class="v-id">…</span>';
+  const ts = Math.floor(Date.now() / 1000).toString();
+  const nonce = crypto.randomBytes(16).toString('hex');
+  const sig = crypto.createHmac('sha256', process.env.MDP_CSE_SECRET)
+    .update(`${id}.${ts}.${nonce}`).digest('hex');
+  res.redirect(302, `https://cognac-leopold-croizet.com/acces-cse/?mdp_cse=${id}&amp;mdp_ts=${ts}&amp;mdp_nonce=${nonce}&amp;mdp_sig=${sig}`);
+});</code></pre>
+
+        <h2>Exemple de lien qui fonctionne</h2>
+        <p>Ce bouton fabrique un lien neuf, exactement comme devra le faire votre serveur, valable 10 minutes et une seule fois. Il ouvre le site Cognac Léopold Croizet ; la boutique affiche ensuite « Tarif CSE Lectra » et les prix CSE.</p>
+        <button type="button" id="make">Créer un lien d'exemple</button>
+        <div id="example" class="card"><p><a id="example-link" href="#" target="_blank" rel="noreferrer">Ouvrir le site Cognac Léopold Croizet avec le tarif CSE Lectra</a></p><pre><code id="example-url"></code></pre></div>
+      </div>
+      <footer>
+        <p>Cette page devient inaccessible après 10 connexions réussies. Elle est réactivée sur simple demande à <a href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a>.</p>
+        <p>Maison des Pierres · 30, rue d'Angoulême, 16200 Triac-Lautrait · 05 45 35 88 10</p>
+      </footer>
+    </main>
+    <script>
+      (function () {
+        var cfg = null, body = document.body;
+        fetch('https://boutique.mdpierre.com/commander/?mdp_cse_setup=cse-lectra', { cache: 'no-store', credentials: 'omit' })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (!d || d.open !== true) { body.className = 'is-closed'; return; }
+            cfg = d;
+            document.querySelectorAll('.v-id').forEach(function (n) { n.textContent = d.id; });
+            document.getElementById('v-secret').textContent = d.secret;
+            body.className = '';
+          })
+          .catch(function () { body.className = 'is-closed'; });
+        document.getElementById('make').addEventListener('click', async function () {
+          if (!cfg) return;
+          var enc = new TextEncoder();
+          var ts = Math.floor(Date.now() / 1000).toString();
+          var hex = function (buf) { return Array.from(new Uint8Array(buf), function (b) { return b.toString(16).padStart(2, '0'); }).join(''); };
+          var nonce = hex(crypto.getRandomValues(new Uint8Array(16)));
+          var key = await crypto.subtle.importKey('raw', enc.encode(cfg.secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+          var sig = hex(await crypto.subtle.sign('HMAC', key, enc.encode(cfg.id + '.' + ts + '.' + nonce)));
+          var url = 'https://cognac-leopold-croizet.com/acces-cse/?mdp_cse=' + encodeURIComponent(cfg.id) + '&mdp_ts=' + ts + '&mdp_nonce=' + nonce + '&mdp_sig=' + sig;
+          document.getElementById('example-link').href = url;
+          document.getElementById('example-url').textContent = url;
+          document.getElementById('example').style.display = 'block';
+        });
+      })();
+    </script>
+  </body>
+</html>
