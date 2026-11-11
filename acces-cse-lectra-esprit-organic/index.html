@@ -51,7 +51,7 @@
       <p id="loading" class="card">Chargement des paramètres…</p>
       <div id="closed" class="card">
         <p><strong>Cette page n'est plus accessible.</strong></p>
-        <p>Elle a été fermée après 10 connexions réussies. Elle est réactivée sur simple demande à <a href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a>.</p>
+        <p>Il ne reste plus de connexion disponible : elle a été fermée après ses connexions réussies. Elle est réactivée sur simple demande à <a href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a>.</p>
       </div>
       <div id="content">
         <h2>Principe</h2>
@@ -103,7 +103,8 @@ app.get('/cognac', requireLogin, (req, res) =&gt; {
         <div id="example" class="card"><p><a id="example-link" href="#" target="_blank" rel="noreferrer">Ouvrir le site Cognac Esprit Organic avec le tarif CSE Lectra</a></p><pre><code id="example-url"></code></pre></div>
       </div>
       <footer>
-        <p>Cette page devient inaccessible après 10 connexions réussies. Elle est réactivée sur simple demande à <a href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a>.</p>
+        <p id="remaining-line" hidden><strong>Connexions encore disponibles : <span id="remaining">…</span> sur <span id="limit">…</span>.</strong></p>
+        <p>Cette page devient inaccessible après <span class="v-limit">10</span> connexions réussies. Elle est réactivée sur simple demande à <a href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a>.</p>
         <p>Maison des Pierres · 30, rue d'Angoulême, 16200 Triac-Lautrait · 05 45 35 88 10</p>
       </footer>
     </main>
@@ -117,6 +118,10 @@ app.get('/cognac', requireLogin, (req, res) =&gt; {
             cfg = d;
             document.querySelectorAll('.v-id').forEach(function (n) { n.textContent = d.id; });
             document.getElementById('v-secret').textContent = d.secret;
+            document.getElementById('remaining').textContent = d.remaining;
+            document.getElementById('limit').textContent = d.limit;
+            document.querySelectorAll('.v-limit').forEach(function (n) { n.textContent = d.limit; });
+            document.getElementById('remaining-line').hidden = false;
             body.className = '';
           })
           .catch(function () { body.className = 'is-closed'; });
