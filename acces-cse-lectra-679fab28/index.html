@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accès CSE Lectra | Maison des Pierres</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <style>
+      :root{--ink:#171512;--paper:#f5f1e8;--card:#fffaf0;--line:#d7ccba;--cognac:#b66d35;--vine:#263e31;--muted:#5d564c}
+      *{box-sizing:border-box}
+      body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,Arial,sans-serif}
+      main{max-width:760px;margin:0 auto;padding:40px 16px 64px}
+      header{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+      header img{height:44px;width:auto}
+      h1{font:400 34px/1.15 Georgia,"Times New Roman",serif;margin:0 0 8px}
+      h2{font:600 15px/1.3 Inter,Arial,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:var(--vine);margin:32px 0 10px}
+      p{margin:0 0 12px}.lead{color:var(--muted);font-size:17px}
+      .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin:12px 0}
+      dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 16px;margin:0}
+      dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}
+      code,pre{font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+      code{background:#efe7d8;padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+      pre{background:var(--ink);color:#f5f1e8;padding:16px;border-radius:8px;overflow-x:auto;margin:10px 0}
+      ol{padding-left:22px;margin:0}li{margin:6px 0}
+      button{font:600 15px Inter,Arial,sans-serif;background:var(--cognac);color:#fff;border:0;border-radius:6px;padding:12px 18px;cursor:pointer}
+      button:hover{background:#9a5a2b}
+      #example{display:none;margin-top:12px}#example a{color:var(--vine);font-weight:600;overflow-wrap:anywhere}
+      .note{font-size:14px;color:var(--muted)}
+      footer{margin-top:40px;font-size:13px;color:var(--muted)}
+    </style>
+  </head>
+  <body>
+    <main>
+      <header><img src="/assets/maison-des-pierres-logo-original.png" alt="Maison des Pierres" /></header>
+      <h1>Accès CSE Lectra</h1>
+      <p class="lead">Pour l'informaticien de l'intranet du CSE Lectra : comment créer le lien qui donne aux salariés le tarif CSE sur la boutique Maison des Pierres (Cognac Léopold Croizet et Cognac Esprit Organic).</p>
+
+      <h2>Principe</h2>
+      <p>Le lien est fabriqué par le serveur de l'intranet au moment où un salarié connecté clique. Il est signé, valable 10 minutes et utilisable une seule fois. Recopié ou transféré, il ne donne pas la remise.</p>
+
+      <h2>Vos paramètres</h2>
+      <div class="card"><dl>
+        <dt>Identifiant</dt><dd><code id="cse-id">cse-lectra</code></dd>
+        <dt>Clé secrète</dt><dd><code id="cse-secret">76f364eabb9a8ebf03f3c7d7b8e3b8f4757900062ad39ef168473ff7c73b0522</code></dd>
+        <dt>Adresse</dt><dd><code>https://boutique.mdpierre.com/commander/</code></dd>
+      </dl></div>
+      <p class="note">La clé reste sur le serveur de l'intranet : jamais dans une page, un navigateur ou un lien.</p>
+
+      <h2>À chaque clic</h2>
+      <ol>
+        <li><code>ts</code> : l'heure actuelle en secondes (timestamp Unix, 2 minutes de tolérance).</li>
+        <li><code>nonce</code> : 32 caractères aléatoires (0-9 a-f).</li>
+        <li><code>sig</code> : HMAC-SHA256 en hexadécimal du texte <code>cse-lectra.ts.nonce</code>, avec la clé secrète telle quelle.</li>
+        <li>Rediriger le salarié (HTTP 302) vers :<br /><code>https://boutique.mdpierre.com/commander/?mdp_cse=cse-lectra&amp;mdp_ts=ts&amp;mdp_nonce=nonce&amp;mdp_sig=sig</code></li>
+      </ol>
+
+      <h2>Exemple PHP</h2>
+      <pre><code>&lt;?php
+// Page de l'intranet réservée aux salariés connectés, ex. /cognac
+$id     = 'cse-lectra';
+$secret = getenv('MDP_CSE_SECRET');   // la clé secrète, stockée côté serveur
+$ts     = (string) time();
+$nonce  = bin2hex(random_bytes(16));
+$sig    = hash_hmac('sha256', "$id.$ts.$nonce", $secret);
+header('Location: https://boutique.mdpierre.com/commander/?' . http_build_query([
+    'mdp_cse' =&gt; $id, 'mdp_ts' =&gt; $ts, 'mdp_nonce' =&gt; $nonce, 'mdp_sig' =&gt; $sig,
+]), true, 302);
+exit;</code></pre>
+
+      <h2>Exemple Node.js</h2>
+      <pre><code>const crypto = require('crypto');
+app.get('/cognac', requireLogin, (req, res) =&gt; {
+  const id = 'cse-lectra';
+  const ts = Math.floor(Date.now() / 1000).toString();
+  const nonce = crypto.randomBytes(16).toString('hex');
+  const sig = crypto.createHmac('sha256', process.env.MDP_CSE_SECRET)
+    .update(`${id}.${ts}.${nonce}`).digest('hex');
+  res.redirect(302, `https://boutique.mdpierre.com/commander/?mdp_cse=${id}&amp;mdp_ts=${ts}&amp;mdp_nonce=${nonce}&amp;mdp_sig=${sig}`);
+});</code></pre>
+
+      <h2>Exemple de lien qui fonctionne</h2>
+      <p>Ce bouton fabrique un lien neuf, exactement comme devra le faire votre serveur, valable 10 minutes et une seule fois. Il ouvre la boutique avec le bandeau « Tarif CSE Lectra ».</p>
+      <button type="button" id="make">Créer un lien d'exemple</button>
+      <div id="example" class="card"><p><a id="example-link" href="#" target="_blank" rel="noreferrer">Ouvrir la boutique avec le tarif CSE Lectra</a></p><pre><code id="example-url"></code></pre></div>
+
+      <footer>Une question technique : <a href="mailto:cognac@mdpierre.com">cognac@mdpierre.com</a> · Maison des Pierres, Triac-Lautrait.</footer>
+    </main>
+    <script>
+      document.getElementById('make').addEventListener('click', async function () {
+        var id = document.getElementById('cse-id').textContent.trim();
+        var secret = document.getElementById('cse-secret').textContent.trim();
+        var enc = new TextEncoder();
+        var ts = Math.floor(Date.now() / 1000).toString();
+        var raw = crypto.getRandomValues(new Uint8Array(16));
+        var nonce = Array.from(raw, function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+        var key = await crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+        var mac = await crypto.subtle.sign('HMAC', key, enc.encode(id + '.' + ts + '.' + nonce));
+        var sig = Array.from(new Uint8Array(mac), function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+        var url = 'https://boutique.mdpierre.com/commander/?mdp_cse=' + encodeURIComponent(id) + '&mdp_ts=' + ts + '&mdp_nonce=' + nonce + '&mdp_sig=' + sig;
+        document.getElementById('example-link').href = url;
+        document.getElementById('example-url').textContent = url;
+        document.getElementById('example').style.display = 'block';
+      });
+    </script>
+  </body>
+</html>
