@@ -111,10 +111,11 @@ app.get('/cognac', requireLogin, (req, res) =&gt; {
     <script>
       (function () {
         var cfg = null, body = document.body;
-        fetch('https://boutique.mdpierre.com/commander/?mdp_cse_setup=cse-lectra', { cache: 'no-store', credentials: 'omit' })
+        function load() {
+        fetch('https://boutique.mdpierre.com/commander/?mdp_cse_setup=cse-lectra&t=' + Date.now(), { cache: 'no-store', credentials: 'omit' })
           .then(function (r) { return r.json(); })
           .then(function (d) {
-            if (!d || d.open !== true) { body.className = 'is-closed'; return; }
+            if (!d || d.open !== true) { cfg = null; body.className = 'is-closed'; return; }
             cfg = d;
             document.querySelectorAll('.v-id').forEach(function (n) { n.textContent = d.id; });
             document.getElementById('v-secret').textContent = d.secret;
@@ -124,7 +125,17 @@ app.get('/cognac', requireLogin, (req, res) =&gt; {
             document.getElementById('remaining-line').hidden = false;
             body.className = '';
           })
-          .catch(function () { body.className = 'is-closed'; });
+          .catch(function () { if (!cfg) body.className = 'is-closed'; });
+        }
+        load();
+        // Le compteur se met à jour sans recharger la page.
+        window.addEventListener('focus', load);
+        document.addEventListener('visibilitychange', function () { if (!document.hidden) load(); });
+        setInterval(function () { if (!document.hidden) load(); }, 20000);
+        document.getElementById('example-link').addEventListener('click', function () {
+          setTimeout(load, 3000); setTimeout(load, 8000);
+          var self = this; setTimeout(function () { self.removeAttribute('href'); document.getElementById('example').style.display = 'none'; }, 50);
+        });
         document.getElementById('make').addEventListener('click', async function () {
           if (!cfg) return;
           var enc = new TextEncoder();
