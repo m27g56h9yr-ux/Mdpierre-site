@@ -1,3 +1,21 @@
+/* Fonts served from this site (no call to Google). Both are open-licence (SIL OFL)
+   variable files, Latin characters only. */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("assets/fonts/cormorant-garamond-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("assets/fonts/inter-latin.woff2") format("woff2");
+}
+
 :root {
   --ink: #171512;
   --charcoal: #26231e;
