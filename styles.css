@@ -428,6 +428,26 @@ a:focus-visible {
   font-size: 0.88rem;
 }
 
+.site-footer__legal {
+  margin-top: 18px;
+}
+
+.site-footer__legal p {
+  margin-top: 8px;
+  font-size: 0.74rem;
+  line-height: 1.6;
+  color: rgba(255, 250, 240, 0.5);
+}
+
+.site-footer__legal strong {
+  font-weight: 600;
+}
+
+.site-footer__legal a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .age-gate {
   position: fixed;
   inset: 0;
